@@ -17,8 +17,8 @@
 			<span class="navbar-brand">Budget Tracker</span>
 
 			<ul>
-				<li ng-click="stage='add'" ng-class="{active: stage=='add'}"><i class="fa fa-plus"></i></li>
-				<li ng-click="stage='list'" ng-class="{active: stage=='list'}"><i class="fa fa-list"></i></li>
+				<li ng-click="change_stage('add')" ng-class="{active: stage=='add'}"><i class="fa fa-plus"></i></li>
+				<li ng-click="change_stage('list')" ng-class="{active: stage=='list'}"><i class="fa fa-list"></i></li>
 			</ul>
 		</div>
 	</header>

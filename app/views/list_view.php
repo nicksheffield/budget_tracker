@@ -81,17 +81,17 @@
 		<div class="col-lg-12">
 			<ul class="table-mimic light list">
 				<li class="header">
-					<span class="cell" style="width: 17.7%;">Category</span>
-					<span class="cell" style="width: 44.4%;">Description</span>
-					<span class="cell" style="width: 8.3%;">Price</span>
-					<span class="cell" style="width: 18.7%;">Date</span>
+					<span class="cell category">Category</span>
+					<span class="cell description">Description</span>
+					<span class="cell price">Price</span>
+					<span class="cell date">Date</span>
 				</li>
 				<li ng-repeat="item in items | filter:searchText" class="animate">
-					<span class="cell" style="width: 17.7%;" ng-click="narrow(item.name)">{{item.name}}</span>
-					<span class="cell" style="width: 44.4%;" ng-click="narrow(item.description)">{{item.description}}</span>
-					<span class="cell" style="width: 8.3%;">${{item.price}}</span>
-					<span class="cell" style="width: 18.7%;" ng-click="narrow(item.day)">{{item.date}}</span>
-					<span class="cell"><button class="delete button" ng-click="delete(item.id)">Delete</button></span>
+					<span class="cell category" ng-click="narrow(item.name)">{{item.name}}</span>
+					<span class="cell description" ng-click="narrow(item.description)">{{item.description}}</span>
+					<span class="cell price">${{item.price}}</span>
+					<span class="cell date" ng-click="narrow(item.day)">{{item.date}}</span>
+					<span class="cell buttons"><button class="delete button" ng-click="delete(item.id)">Delete</button></span>
 				</li>
 			</ul>
 

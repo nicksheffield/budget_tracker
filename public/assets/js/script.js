@@ -29,7 +29,7 @@ app.controller('budgetCtrl', function ($scope, $http, $filter, transformRequestA
 	$scope.items = [];
 	$scope.categories = [];
 	$scope.sdata = [];
-	$scope.stage = 'add';
+	$scope.stage = localStorage.stage || 'add';
 	$scope.showDateFilter = false;
 	$scope.month = $scope.months[new Date().getMonth()];
 	$scope.year = new Date().getFullYear();
@@ -156,6 +156,11 @@ app.controller('budgetCtrl', function ($scope, $http, $filter, transformRequestA
 
 	$scope.load_items();
 	$scope.load_categories();
+
+	$scope.change_stage = function(stage){
+		$scope.stage = stage;
+		localStorage.stage = stage;
+	}
 
 	$scope.narrow = function(text){
 		$scope.searchText = text;

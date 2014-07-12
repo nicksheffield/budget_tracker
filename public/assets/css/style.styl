@@ -4,6 +4,7 @@
 	-ms-box-sizing     border-box
 	-o-box-sizing      border-box
 	box-sizing         border-box
+
 	outline none !important
 
 body
@@ -11,7 +12,6 @@ body
 	color #4b4b4b
 	margin 0
 	overflow-y scroll
-	text-shadow 0 0 1px rgba(0,0,0,0.1);
 
 header
 	position absolute
@@ -60,6 +60,9 @@ header
 
 table
 	cursor default
+
+textarea.csv
+	height 230px
 
 .main
 
@@ -213,6 +216,16 @@ body.sticky
 		&.header
 			font-weight bold
 
+		span
+			&.category
+				width 18%
+			&.description
+				width 40%
+			&.price
+				width 8%
+			&.date
+				width 20%
+
 	&.dark
 		li
 			border-color #555
@@ -225,7 +238,40 @@ body.sticky
 			&:hover
 				background-color #f5f5f5
 
+
+@media (max-width: 992px)
 	
+	.table-mimic.list .header
+		display none
+
+	.table-mimic li
+		position relative
+		padding 1em 0
+	
+		.cell
+			padding 0
+
+			&.description
+				display none
+
+			&.category,
+			&.price,
+			&.date
+				width 100%
+
+			&.category
+				font-size 1.5em
+				font-weight 700
+
+			&.buttons
+				position absolute
+				top 0.5em
+				right 0
+
+				.button
+					opacity 1
+
+
 
 
 .animate.ng-enter,
