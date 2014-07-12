@@ -6,27 +6,6 @@ class Items extends Controller{
 
 
 
-	function __construct(){
-		Input::fake_ajax();
-		
-		if(!Input::ajax()){
-			Load::error('forbidden');
-			exit;
-		}
-	}
-
-
-
-
-
-	function index(){
-		Load::error('forbidden');
-	}
-
-
-
-
-
 	function get($id){
 		$item = new Item_model();
 
