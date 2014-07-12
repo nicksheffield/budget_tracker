@@ -131,7 +131,7 @@ app.controller('listCtrl', function ($scope, $http, $filter) {
 			}
 		}
 
-		sdata = _.sortBy(sdata, function(obj){ return -obj.price})
+		//sdata = _.sortBy(sdata, function(obj){ return -obj.price})
 
 		return sdata;
 	}
