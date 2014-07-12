@@ -33,7 +33,7 @@
 					data="sdata"
 					id="pie"
 					width="550"
-					height="350"
+					height="300"
 					x="xFunction()"
 					y="yFunction()"
 					showLabels="true"
