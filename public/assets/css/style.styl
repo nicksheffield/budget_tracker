@@ -7,9 +7,11 @@
 	outline none !important
 
 body
-	font-family 'Helvetica Neue', Helvetica, Arial, sans-serif
+	font-family 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif
 	color #4b4b4b
 	margin 0
+	overflow-y scroll
+	text-shadow 0 0 1px rgba(0,0,0,0.1);
 
 header
 	position absolute
@@ -37,16 +39,18 @@ header
 
 		li
 			display inline-block
-			
-			a
-				color #000
-				text-decoration none
-				padding 0 1.5em
-				display block
+			color #000
+			text-decoration none
+			padding 0 1.5em
+			cursor pointer
 
-				&:hover
-					background #fff
-					color #000
+			&:hover
+				background #ddd
+
+			&.active
+				background #fff
+
+			
 
 
 .container
@@ -62,13 +66,18 @@ table
 	.list
 		margin-bottom 200px
 
+		.delete
+			color #e74c3c
+			background none
+			border none
+
 		.button
 			opacity 0
 
 		li:hover .button
 			opacity 1
 
-	form.add
+	.add
 		position relative
 
 		.row
@@ -128,39 +137,55 @@ table
 
 	.heading
 		font-size 2.5em
-		margin-bottom 2em
 
 	.total
 		font-size 1.8em
+
+		.money
+			color #2ecc71
 	
-	.error
-		background tomato
+	.message
 		color #fff
 		padding 0.5em 1em
 		border-radius 3px
 		margin 1em 0
+		cursor pointer
+		display none
 
 		.fa
 			padding-right 1em
 
-	.success
-		background #2ecc71
-		color #fff
-		padding 0.5em 1em
-		border-radius 3px
-		margin 1em 0
+		&.show
+			display block
 
-		.fa
-			padding-right 1em
+		&.error
+			background tomato
+
+		&.success
+			background #2ecc71
+
 
 	.search
 		margin-bottom 50px
-
 		.input-group-addon.hover:hover
 			background tomato
 			border 1px solid #ff4444
 			color #fff
 			cursor pointer
+
+body.sticky
+	.banner
+		padding-top 84px
+
+	.search
+		background #222
+		padding 1em
+		width 100%
+		position fixed
+		top 0
+		left 0
+		z-index 99
+
 
 .banner
 	background #333
@@ -186,7 +211,6 @@ table
 		border-bottom 1px solid #ddd
 
 		&.header
-			border-top 1px solid #ddd
 			font-weight bold
 
 	&.dark
@@ -204,8 +228,8 @@ table
 	
 
 
-.item.ng-enter,
-.item.ng-leave
+.animate.ng-enter,
+.animate.ng-leave
 	-webkit-transition 0.1s ease-out all
 	-moz-transition    0.1s ease-out all
 	-ms-transition     0.1s ease-out all
@@ -215,15 +239,15 @@ table
 	display block
 
  
-.item.ng-enter.ng-enter-active, 
-.item.ng-leave
+.animate.ng-enter.ng-enter-active, 
+.animate.ng-leave
 	opacity 1
 	top 0
 	height 30px
 
  
-.item.ng-leave.ng-leave-active,
-.item.ng-enter
+.animate.ng-leave.ng-leave-active,
+.animate.ng-enter
 	opacity 0
 	top -50px
 	height 0px
