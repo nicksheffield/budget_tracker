@@ -21,4 +21,4 @@
 *.rtf	 diff=astextplain
 *.RTF	 diff=astextplain
 
-app/config/config.php filter=gitignore
+*.php filter=gitignore
