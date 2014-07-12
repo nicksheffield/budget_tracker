@@ -1,4 +1,4 @@
-<div class="main" ng-controller="listCtrl">
+<div class="main" ng-hide="stage!='list'" ng-cloak>
 
 	<div class="banner">
 		<div class="container">
@@ -15,13 +15,14 @@
 			</div>
 
 			<div class="col-lg-3 col-md-4">
+				<p class="total">Total: ${{total(items)}}</p>
 				<ul class="table-mimic dark">
 					<li class="header">
 						<span class="cell" style="width: 75px;">Spent</span>
 						<span class="cell">Category</span>
 					</li>
-					<li ng-repeat="item in sdata" class="item">
-						<span class="cell" style="width: 75px;">${{item.price}}</span>
+					<li ng-repeat="item in sdata" class="animate">
+						<span class="cell" style="width: 75px;">${{item.price.toFixed(2)}}</span>
 						<span class="cell"  ng-click="narrow(item.name)">{{item.name}}</span>
 					</li>
 				</ul>
@@ -33,13 +34,14 @@
 					data="sdata"
 					id="pie"
 					width="550"
-					height="300"
+					height="400"
 					x="xFunction()"
 					y="yFunction()"
 					showLabels="true"
 					labelType="percent"
 					tooltips="true"
 					color="colorFunction()"
+					showLegend="false"
 					donut="true"
 					donutRatio=".4"
 					donutLabelsOutside="true"
@@ -54,38 +56,29 @@
 		<div class="col-lg-12">
 
 			<div class="filter_box">
-				<button class="btn btn-default"><i class="fa fa-calendar"></i></button>
+				<button class="btn btn-default" ng-click="toggle('showDateFilter')" ng-class="{open: showDateFilter}"><i class="fa fa-calendar"></i></button>
 
-				<?=Form::open('/list/filter', 'post', 'class="filter"')?>
+				<div class="filter">
 					<div class="form-group">
-						<?=Form::label('month', 'Change Month')?>
+						<label for="month">Change Month</label>
 					</div>
 
 					<div class="form-group">
-						<?=Form::select('month', array(
-							'1' => 'January','2' => 'February','3' => 'March','4' => 'April',
-							'5' => 'May','6' => 'June','7' => 'July','8' => 'August','9' => 'September',
-							'10' => 'October','11' => 'November','12' => 'December',
-						), Sticky::get('month',  Date('n')), 'class="form-control"')?>
+						<select id="month" ng-model="month" class="form-control" ng-change="load_items()">
+							<option ng-repeat="month in months" ng-value="month">{{month}}</option>
+						</select>
 					</div>
 
 					<div class="form-group">
-						<?=Form::number('year', Sticky::get('year', Date('Y')), 'class="form-control"')?>
+						<input type="number" id="year" name="year" class="form-control" ng-model="year" ng-change="load_items()">
 					</div>
-
-					<div class="form-group">
-						<?=Form::submit('Go', 'class="btn btn-default"')?>
-					</div>
-				<?=Form::close()?>
+				</div>
 			</div>
 
-			<p class="heading">Spending between <?=$start_date?> and <?=$end_date?></p>
+			<p class="heading">{{month}} {{year}}</p>
 		</div>
 
 		<div class="col-lg-12">
-
-			<p class="total">Total: ${{total(items)}}</p>
-
 			<ul class="table-mimic light list">
 				<li class="header">
 					<span class="cell" style="width: 160px;">Category</span>
@@ -93,12 +86,12 @@
 					<span class="cell" style="width: 75px;">Price</span>
 					<span class="cell" style="width: 160px;">Date</span>
 				</li>
-				<li ng-repeat="item in items | filter:searchText" class="item">
+				<li ng-repeat="item in items | filter:searchText" class="animate">
 					<span class="cell" style="width: 160px;" ng-click="narrow(item.name)">{{item.name}}</span>
 					<span class="cell" style="width: 400px;" ng-click="narrow(item.description)">{{item.description}}</span>
-					<span class="cell" style="width: 75px;">{{item.price}}</span>
+					<span class="cell" style="width: 75px;">${{item.price}}</span>
 					<span class="cell" style="width: 160px;" ng-click="narrow(item.date.split(' ')[0])">{{item.date}}</span>
-					<span class="cell"><a ng-href="/delete/{{item.id}}" class="button">Delete</a></span>
+					<span class="cell"><button class="delete button" ng-click="delete(item.id)">Delete</button></span>
 				</li>
 			</ul>
 

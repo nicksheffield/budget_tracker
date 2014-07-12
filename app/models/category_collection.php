@@ -11,15 +11,7 @@ class Category_collection{
 	}
 
 	public function load(){
-		$cats = $this->db->select('*')->from($this->table)->get();
-
-		foreach($cats as $cat){
-			$category = new Category_model();
-
-			$category->fill($cat);
-
-			$this->items[] = $category;
-		}
+		$this->items = $this->db->select('*')->from($this->table)->get();
 
 		return $this->items;
 	}

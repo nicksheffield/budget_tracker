@@ -211,11 +211,11 @@ class Database{
 
 		$this->sets = array();
 
-		$this->run($insert_query);
+		$success = $this->run($insert_query);
 
 		$this->last_insert_id = $this->connection->insert_id;
 
-		return $this;
+		return $success;
 	}
 
 
@@ -247,11 +247,11 @@ class Database{
 
 		$this->reset();
 
-		$this->run($update_query);
+		$success = $this->run($update_query);
 
 		$this->num_updated_rows = $this->connection->affected_rows;
 
-		return $this;
+		return $success;
 	}
 
 

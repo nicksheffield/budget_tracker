@@ -9,8 +9,8 @@
 $config['default_controller']  = 'site';
 $config['base_url']            = '';
 
-$config['autoload']['libs']    = array('form', 'sticky', 'error');
-$config['autoload']['models']  = array('category_model', 'category_collection', 'item_model', 'item_collection');
+$config['autoload']['libs']    = array('json');
+$config['autoload']['models']  = array('item_model', 'item_collection', 'category_collection');
 
 $config['db']['hostname']      = 'localhost';
 $config['db']['username']      = '';

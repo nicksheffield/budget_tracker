@@ -24,6 +24,10 @@ class Input{
 		return !!count(self::$data);
 	}
 
+	public static function fake_ajax(){
+		$_SERVER['HTTP_X_REQUESTED_WITH'] = true;
+	}
+
 	public static function ajax(){
 		return isset($_SERVER['HTTP_X_REQUESTED_WITH']);
 	}

@@ -10,7 +10,8 @@ class Model{
 	protected $singular = 'Record';
 
 	protected $fields = array();
-	protected $data = array();
+	public $data = array();
+	public $loose = false;
 
 	public $db;
 
@@ -51,21 +52,20 @@ class Model{
 
 	function save(){
 		if(!isset($this->data[$this->primary_key])){
-			$this->db->insert($this->table, $this->data);
+			$success = $this->db->insert($this->table, $this->data);
 
 			$this->id = $this->db->last_insert_id;
 		}else{
-			$this->update();
+			$success = $this->update();
 		}
 
-		return $this;
+		return $success;
 	}
 
 
 
 	function update(){
-		$this->db->update($this->table, $this->primary_key.'='.$this->id, $this->data);
-		return $this;
+		return $this->db->update($this->table, $this->primary_key.'='.$this->id, $this->data);
 	}
 
 	function delete(){
@@ -90,7 +90,7 @@ class Model{
 
 
 	function __set($var, $val){
-		if(in_array($var, $this->fields)){
+		if(in_array($var, $this->fields) || $this->loose){
 			return $this->data[$var] = $val;
 		}
 	}
