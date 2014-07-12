@@ -141,10 +141,4 @@ class Site extends Controller{
 
 		URL::redirect('/list');
 	}
-
-	function stats(){
-		/**
-		* @todo Stats function
-		*/
-	}
 }
