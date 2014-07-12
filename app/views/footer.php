@@ -7,6 +7,9 @@
 	<script src="/assets/js/d3.v3.js"></script>
 	<script src="/assets/js/nv.d3.js"></script>
 
+	<script src="/assets/js/moment.js"></script>
+	<script src="/assets/js/angular-moment.min.js"></script>
+
 	<script src="/assets/pie/dist/angularjs-nvd3-directives.min.js"></script>
 
 	<script src="/assets/js/script.js"></script>

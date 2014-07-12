@@ -15,7 +15,7 @@ $(function(){
 
 // ANGULAR
 
-var app = angular.module('app', ['ngAnimate', 'nvd3ChartDirectives'])
+var app = angular.module('app', ['ngAnimate', 'nvd3ChartDirectives', 'angularMoment'])
 
 app.controller('budgetCtrl', function ($scope, $http, $filter, transformRequestAsFormPost ) {
 
@@ -55,6 +55,9 @@ app.controller('budgetCtrl', function ($scope, $http, $filter, transformRequestA
 			success(function(data, status, headers, config) {
 				for(var i=0; i<data.length; i++){
 					data[i].price = parseFloat(data[i].price).toFixed(2)
+					var date = data[i].date;
+					data[i].date = $filter('amDateFormat')(date, 'MMMM D YYYY, h:mm a')
+					data[i].day  = $filter('amDateFormat')(date, 'MMMM D')
 				}
 
 				$scope.items = data;
@@ -128,6 +131,10 @@ app.controller('budgetCtrl', function ($scope, $http, $filter, transformRequestA
 						break;
 					}
 				}
+
+				var date = data.item.date;
+				data.item.date = $filter('amDateFormat')(date, 'MMMM D YYYY, h:mm a')
+				data.item.day  = $filter('amDateFormat')(date, 'MMMM D')
 
 				$scope.items.push(data.item);
 				$scope.sdata = $scope.simplify($scope.items);
