@@ -23,7 +23,7 @@ $config['db']['database']      = '';
 
 # Feel free to delete this, and just enter your credentials as per usual in the $config['db'] array above.
 
-require(APP.'/config/db_creds.php');
+require(APP_URL.'/config/db_creds.php');
 $config['db']['username']      = DB_USERNAME;
 $config['db']['password']      = DB_PASSWORD;
 $config['db']['database']      = DB_DATABASE;
