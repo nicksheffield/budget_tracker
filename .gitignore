@@ -38,3 +38,5 @@ Icon
 
 *.zip
 sftp-config.json
+
+app/config/db_creds.php
