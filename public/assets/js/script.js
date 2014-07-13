@@ -1,17 +1,6 @@
 // JQUERY
 
-$(function(){
-
-	var $window = $(window),
-		$stickyEl = $('.search'),
-		elTop = $stickyEl.offset().top;
-
-	$window.scroll(function() {
-		$('body').toggleClass('sticky', $window.scrollTop() > 100);
-	});
-
-
-})
+// $(function(){})
 
 // ANGULAR
 
@@ -33,6 +22,9 @@ app.controller('budgetCtrl', function ($scope, $http, $filter, transformRequestA
 	$scope.showDateFilter = false;
 	$scope.month = $scope.months[new Date().getMonth()];
 	$scope.year = new Date().getFullYear();
+	$scope.colors = ['#2ecc71', '#3498db', '#e74c3c', '#f1c40f', '#e67e22', '#9b59b6', '#34495e', 'tomato', '#1abc9c', '#00ffaa', '#edaf12', '#f6096c'];
+
+	$scope.dates = [];
 
 	$scope.new_category = 0;
 	$scope.new_price = '';
@@ -56,12 +48,13 @@ app.controller('budgetCtrl', function ($scope, $http, $filter, transformRequestA
 				for(var i=0; i<data.length; i++){
 					data[i].price = parseFloat(data[i].price).toFixed(2)
 					var date = data[i].date;
-					data[i].date = $filter('amDateFormat')(date, 'MMMM D YYYY, h:mm a')
 					data[i].day  = $filter('amDateFormat')(date, 'MMMM D')
+					data[i].time = $filter('amDateFormat')(date, 'h:mm a')
 				}
 
 				$scope.items = data;
 				$scope.sdata = $scope.simplify(data);
+				$scope.dates = $scope.get_dates(data);
 			}).
 			error(function(data, status, headers, config) {
 				// log error
@@ -103,6 +96,7 @@ app.controller('budgetCtrl', function ($scope, $http, $filter, transformRequestA
 					}
 
 					$scope.sdata = $scope.simplify($scope.items);
+					$scope.dates = $scope.get_dates($scope.items);
 				}
 			})
 		}
@@ -133,11 +127,12 @@ app.controller('budgetCtrl', function ($scope, $http, $filter, transformRequestA
 				}
 
 				var date = data.item.date;
-				data.item.date = $filter('amDateFormat')(date, 'MMMM D YYYY, h:mm a')
 				data.item.day  = $filter('amDateFormat')(date, 'MMMM D')
+				data.item.time = $filter('amDateFormat')(date, 'h:mm a')
 
 				$scope.items.push(data.item);
 				$scope.sdata = $scope.simplify($scope.items);
+				$scope.dates = $scope.get_dates($scope.items);
 
 				$scope.new_category    = 0;
 				$scope.new_price       = '';
@@ -185,10 +180,10 @@ app.controller('budgetCtrl', function ($scope, $http, $filter, transformRequestA
 		return isNaN(sum) ? 0 : sum.toFixed(2);
 	}
 
-	var colorArray = ['#2ecc71', '#3498db', '#e74c3c', '#f1c40f', '#e67e22', '#9b59b6', '#34495e', 'tomato', '#1abc9c', '#00ffaa', '#edaf12', '#f6096c'];
+	
 	$scope.colorFunction = function() {
 		return function(d, i) {
-			return colorArray[i];
+			return $scope.colors[i];
 		};
 	}
 
@@ -230,6 +225,31 @@ app.controller('budgetCtrl', function ($scope, $http, $filter, transformRequestA
 		sdata = _.sortBy(sdata, function(obj){ return -obj.price})
 
 		return sdata;
+	}
+
+	$scope.get_dates = function(data){
+		var sdata = [],
+			uniqueList,
+			result = []
+		
+		data = $filter('filter')(data, $scope.searchText);
+
+		for(var i=0; i < data.length; i++){
+			sdata.push(data[i].day);
+		}
+
+		uniqueList = _.uniq(sdata, function(item) { return item });
+
+		console.log(uniqueList);
+
+		for(var i=0; i<uniqueList.length; i++){
+			result.push({
+				date: uniqueList[i],
+				open: true
+			})
+		}
+
+		return result;
 	}
 
 })
