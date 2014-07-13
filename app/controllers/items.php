@@ -5,7 +5,11 @@ class Items extends Controller{
 
 
 
-
+	/**
+	 * Output a JSON object representing a single item
+	 * @param  int $id
+	 * @return void
+	 */
 	function get($id){
 		$item = new Item_model();
 
@@ -17,7 +21,11 @@ class Items extends Controller{
 
 
 
-
+	/**
+	 * Output a JSON list of all items in a given month
+	 * @param  string $date Must be a full textual month and a 4 character year separated by a comma, ie, january-2014
+	 * @return void
+	 */
 	function get_date($date){
 		$items = new Item_collection();
 
@@ -29,7 +37,10 @@ class Items extends Controller{
 
 
 
-
+	/**
+	 * Saves a new item into the database
+	 * @return void
+	 */
 	function save(){
 		if(Input::posted()){
 			$item = new Item_model();
@@ -58,7 +69,10 @@ class Items extends Controller{
 
 
 
-
+	/**
+	 * Deletes an item from the database
+	 * @return void
+	 */
 	function delete(){
 		if(Input::posted()){
 			$item = new Item_model();

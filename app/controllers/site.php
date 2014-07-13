@@ -2,6 +2,10 @@
 
 class Site extends Controller{
 
+	/**
+	 * Load the views necessary for the page
+	 * @return void
+	 */
 	function index(){
 
 		Load::view('header');
