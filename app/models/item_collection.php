@@ -21,7 +21,6 @@ class Item_collection{
 		# If the date was provided
 		if($date){
 			# Figure out what the end month and year are
-			$stamp  = strtotime($date);
 			$emonth = date('m', $stamp);
 			$eyear  = date('Y', $stamp);
 
@@ -30,7 +29,6 @@ class Item_collection{
 			# Figure out the current month and year
 			$emonth = date('m');
 			$eyear  = date('Y');
-			$stamp  = date('U');
 		}
 
 		# Figure out the start date.
