@@ -2,9 +2,9 @@
 
 class Category_collection{
 
-	public $items = array();
-	public $table = 'categories';
-	private $db   = null;
+	public    $items = array();
+	protected $table = 'categories';
+	protected $db    = null;
 
 	public function __construct(){
 		$this->db = Registry::$db;
