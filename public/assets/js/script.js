@@ -185,7 +185,7 @@ app.controller('budgetCtrl', function ($scope, $http, $filter, transformRequestA
 		return isNaN(sum) ? 0 : sum.toFixed(2);
 	}
 
-	var colorArray = ['#2ecc71', '#3498db', '#e74c3c', '#f1c40f', '#e67e22', '#9b59b6', '#34495e', '#95a5a6', '#1abc9c', '#00ffaa', '#edaf12', '#f6096c'];
+	var colorArray = ['#2ecc71', '#3498db', '#e74c3c', '#f1c40f', '#e67e22', '#9b59b6', '#34495e', 'tomato', '#1abc9c', '#00ffaa', '#edaf12', '#f6096c'];
 	$scope.colorFunction = function() {
 		return function(d, i) {
 			return colorArray[i];
@@ -227,7 +227,7 @@ app.controller('budgetCtrl', function ($scope, $http, $filter, transformRequestA
 			}
 		}
 
-		//sdata = _.sortBy(sdata, function(obj){ return -obj.price})
+		sdata = _.sortBy(sdata, function(obj){ return -obj.price})
 
 		return sdata;
 	}
