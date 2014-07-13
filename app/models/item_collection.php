@@ -31,14 +31,14 @@ class Item_collection{
 		if($emonth == 1){
 			# Then we need to roll back the year by 1
 			$syear = $eyear - 1;
-			# And set to december of that year
+			# And set the month to december
 			$smonth = 12;
 
 		# If the month is not january,
 		}else{
 			# use the same current year
 			$syear = $eyear;
-			# and just roll the month back
+			# and just roll the month back by one
 			$smonth = $emonth - 1;
 		}
 
