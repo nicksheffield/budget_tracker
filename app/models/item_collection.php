@@ -29,7 +29,7 @@ class Item_collection{
 		# Figure out the start date.
 		# If the month is january
 		if($emonth == 1){
-			# Then we need to roll back the year by 1
+			# Then we need to roll back the year by one
 			$syear = $eyear - 1;
 			# And set the month to december
 			$smonth = 12;
