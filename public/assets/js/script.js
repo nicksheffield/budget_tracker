@@ -179,7 +179,7 @@ app.controller('budgetCtrl', function ($scope, $http, $filter, transformRequestA
 		items = $filter('filter')(items, $scope.searchText);
 
 		for(var i=-1; ++i < items.length;){
-			sum += parseFloat(items[i].price)
+			sum += parseFloat(items[i].price);
 		}
 
 		return isNaN(sum) ? 0 : sum.toFixed(2);
