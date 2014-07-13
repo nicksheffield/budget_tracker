@@ -1,4 +1,4 @@
-<div class="sidebar" ng-hide="stage!='list'" ng-cloak>
+<div class="sidebar panel" ng-hide="stage!='list'" ng-cloak>
 		
 	<div class="search">
 		<div class="input-group">
@@ -13,8 +13,8 @@
 		<nvd3-pie-chart
 			data="sdata"
 			id="pie"
-			width="300"
-			height="300"
+			width="260"
+			height="260"
 			x="xFunction()"
 			y="yFunction()"
 			showLabels="true"
@@ -36,7 +36,7 @@
 			<span class="cell" style="width: 75px;">Spent</span>
 			<span class="cell">Category</span>
 		</li>
-		<li ng-repeat="item in sdata" class="animate">
+		<li ng-repeat="item in sdata" class="">
 			<span class="color-bullet" ng-style="{background: colors[$index]}"></span>
 			<span class="cell" style="width: 75px;">${{item.price.toFixed(2)}}</span>
 			<span class="cell searchText"  ng-click="narrow(item.name)">{{item.name}}</span>
@@ -70,7 +70,7 @@
 	<div class="col-lg-6">
 
 		<ul class="date_list">
-			<li ng-repeat="date in dates">
+			<li ng-repeat="date in dates" class="panel">
 				<span class="title searchText" ng-click="narrow(date.date)">{{date.date}}</span>
 				<ul class="table-mimic light">
 					<li ng-repeat="item in items | filter:searchText | filter: date.date" class="animate">
@@ -78,7 +78,7 @@
 						<span class="cell price">${{item.price}}</span>
 						<span class="cell category searchText" ng-click="narrow(item.name)">{{item.name}}</span>
 						<span class="cell description">{{item.description}}</span>
-						<span class="cell buttons"><button class="delete button" ng-click="delete(item.id)">Delete</button></span>
+						<span class="cell buttons"><button class="delete button" ng-click="delete(item.id)"><i class="fa fa-times"></i></button></span>
 					</li>
 				</ul>
 			</li>

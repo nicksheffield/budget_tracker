@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="http://cdn.nmbrft.com/budget/style.css">
 	<link rel="stylesheet" href="/assets/css/nv.d3.css">
 </head>
-<body ng-app="app" ng-controller="budgetCtrl">
+<body ng-app="app" ng-controller="budgetCtrl" ng-class="{stage_list: stage == 'list'}">
 
 	<header class="navbar navbar-static-top">
 		<div class="container">

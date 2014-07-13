@@ -240,8 +240,6 @@ app.controller('budgetCtrl', function ($scope, $http, $filter, transformRequestA
 
 		uniqueList = _.uniq(sdata, function(item) { return item });
 
-		console.log(uniqueList);
-
 		for(var i=0; i<uniqueList.length; i++){
 			result.push({
 				date: uniqueList[i],
