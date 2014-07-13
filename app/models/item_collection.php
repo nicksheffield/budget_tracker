@@ -18,19 +18,13 @@ class Item_collection{
 			->from('items, categories')
 			->join('items.category_id = categories.id');
 
-		# If the date was provided
-		if($date){
-			# Figure out what the end month and year are
-			$stamp  = strtotime($date);
-			$emonth = date('m', $stamp);
-			$eyear  = date('Y', $stamp);
+		# If a date was provided, get a timestamp of that date
+			# If a date was not provided, get the current timestamp
+		$stamp  = $date ? strtotime($date) : date('U');
 
-		# If the date was not provided
-		}else{
-			# Figure out the current month and year
-			$emonth = date('m');
-			$eyear  = date('Y');
-		}
+		# Figure out what the end month and year are based on the stamp set above
+		$emonth = date('m', $stamp);
+		$eyear  = date('Y', $stamp);
 
 		# Figure out the start date.
 		# If the month is january
